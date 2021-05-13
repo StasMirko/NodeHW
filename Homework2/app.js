@@ -74,6 +74,7 @@ app.get('/users/:userId', (req, res) => {
 
 app.get('/err', (req, res) => {
     res.render('err');
+    console.log('f');
 });
 
 app.listen(5000, () => {
