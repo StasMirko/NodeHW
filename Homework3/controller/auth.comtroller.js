@@ -1,8 +1,15 @@
 const authService = require('../service/auth.service');
+const errorCodes = require('../constant/errorCodes.enum');
+const errorMessages = require('../error/error.messages');
 
 module.exports = {
     createUser: (req, res) => {
-        authService.createUser(req.body);
-        res.status(201).json('User is created');
+        try {
+            const {preferL = 'en'} = req.body;
+            authService.createUser(req.body);
+            res.status(errorCodes.CREATED).json(errorMessages.USER_IS_CREATED[preferL]);
+        } catch (e) {
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
+        }
     }
 };

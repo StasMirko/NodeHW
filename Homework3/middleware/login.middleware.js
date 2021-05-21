@@ -1,16 +1,19 @@
 const loginService = require('../service/login.service');
+const errorCodes = require('../constant/errorCodes.enum');
+const errorMessages = require('../error/error.messages');
+
 
 module.exports = {
     isUser: (req, res, next) => {
         try {
-            const {email, password} = req.body;
+            const {email, password, preferL = 'en'} = req.body;
             const user = loginService.getUserByEmail(email, password);
             if (!user) {
-                throw new Error('Such user does not exist');
+                throw new Error(errorMessages.SUCH_USER_DOES_NOT_EXIST[preferL]);
             }
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     }
 }
