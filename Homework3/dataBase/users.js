@@ -1,6 +1,6 @@
 module.exports = [
     {
-        mail: 'stas',
+        email: 'stas',
         password: '12345',
         preferL: 'ua'
     }
