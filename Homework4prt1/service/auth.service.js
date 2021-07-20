@@ -1,7 +1,14 @@
-const DB = require('../dataBase/users');
+const connection = require('../dataBase');
 
 module.exports = {
-    createUser: (userObject) => {
-        DB.push(userObject);
-    }
+
+    createUser: (email, password, preferL) => {
+        connection.query(`INSERT INTO users (email, password, preferL) VALUES 
+    ('${email}', '${password}', '${preferL}' )`,
+            (err, results) => {
+                console.log(results);
+            })
+    }    // createUser: (userObject) => {
+    //     DB.push(userObject);
+    // }
 }

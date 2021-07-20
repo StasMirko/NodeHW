@@ -1,19 +1,44 @@
-const DB = require('../dataBase/users');
+const connection = require('../dataBase');
 
 module.exports = {
-    findUsers: () => {
-        return DB;
+
+    findUsers: async () => {
+
+        const promisePool = connection.promise();
+
+        const [rows] = await promisePool.query('SELECT * FROM users');
+
+        console.log(rows);
+        return rows;
     },
 
-    findUserById: (userId) =>{
-        return DB[userId];
+    findUserById: async (userId) =>{
+
+        const promisePool = connection.promise();
+
+        const [rows] = await promisePool.query(`SELECT * FROM users WHERE id = '${userId}'`);
+
+        console.log(rows);
+        return rows;
     },
 
-    deleteUser: (userId) => {
-        DB.splice(userId, 1);
+    deleteUser: async (userId) => {
+
+        const promisePool = connection.promise();
+
+        const [rows] = await promisePool.query(`DELETE FROM users WHERE id = '${userId}'`);
+
+        console.log(rows);
+        return rows;
     },
 
-    dataBaseLength: () => {
-        return DB.length;
+    dataBaseIsId: async (userId) => {
+
+        const promisePool = connection.promise();
+
+        const [rows] = await promisePool.query(`SELECT SUM(id) FROM users WHERE id = '${userId}'`);
+
+        console.log(rows);
+        return rows;
     }
 }

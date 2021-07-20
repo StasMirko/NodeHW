@@ -6,7 +6,7 @@ module.exports = {
     createUser: (req, res) => {
         try {
             const {preferL = 'en'} = req.body;
-            authService.createUser(req.body);
+            authService.createUser(req.body.email, req.body.password, req.body.preferL);
             res.status(errorCodes.CREATED).json(errorMessages.USER_IS_CREATED[preferL]);
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
