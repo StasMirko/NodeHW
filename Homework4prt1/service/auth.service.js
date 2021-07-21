@@ -8,7 +8,5 @@ module.exports = {
             (err, results) => {
                 console.log(results);
             })
-    }    // createUser: (userObject) => {
-    //     DB.push(userObject);
-    // }
+    }
 }

@@ -4,10 +4,10 @@ const errorMessages = require('../error/error.messages');
 
 
 module.exports = {
-    isUser: (req, res, next) => {
+    isUser: async (req, res, next) => {
         try {
             const {email, password, preferL = 'en'} = req.body;
-            const user = loginService.getUserByEmail(email, password);
+            const user = await loginService.getUserByEmail(email, password);
             if (!user) {
                 throw new Error(errorMessages.SUCH_USER_DOES_NOT_EXIST[preferL]);
             }
