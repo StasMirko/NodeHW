@@ -1,19 +1,29 @@
-const DB = require('../dataBase/users');
+const db = require('../dataBase').getInstance();
 
 module.exports = {
-    findUsers: () => {
-        return DB;
-    },
 
-    findUserById: (userId) =>{
-        return DB[userId];
-    },
+    findUsers: async () => {
 
-    deleteUser: (userId) => {
-        DB.splice(userId, 1);
-    },
+        const  UserModel = db.getModel('User');
 
-    dataBaseLength: () => {
-        return DB.length;
+        const users = await UserModel.findAll({});
+
+        return users;
     }
+
+    // findUsers: () => {
+    //     return DB;
+    // },
+    //
+    // findUserById: (userId) =>{
+    //     return DB[userId];
+    // },
+    //
+    // deleteUser: (userId) => {
+    //     DB.splice(userId, 1);
+    // },
+    //
+    // dataBaseLength: () => {
+    //     return DB.length;
+    // }
 }

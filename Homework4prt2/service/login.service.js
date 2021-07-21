@@ -1,4 +1,4 @@
-const DB = require('../dataBase/users');
+const DB = require('../dataBase');
 
 module.exports = {
   getUserByEmail: (email, password) => {

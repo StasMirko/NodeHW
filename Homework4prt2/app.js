@@ -4,6 +4,9 @@ const app = express();
 
 const apiRouter = require('./router/api.router');
 
+const db = require('./dataBase').getInstance();
+db.setModels();
+
 app.use(express.json());
 
 app.use(express.urlencoded({extended: true}));
