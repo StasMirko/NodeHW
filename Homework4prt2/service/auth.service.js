@@ -1,7 +1,11 @@
-const DB = require('../dataBase');
+const db = require('../dataBase').getInstance();
 
 module.exports = {
-    createUser: (userObject) => {
-        DB.push(userObject);
+    createUser: async (user) => {
+
+        const  UserModel = db.getModel('User');
+
+        await UserModel.create(user);
+
     }
 }

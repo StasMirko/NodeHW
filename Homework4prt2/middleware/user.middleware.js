@@ -17,11 +17,12 @@ module.exports = {
         }
     },
 
-    isId: (req, res, next) => {
+    isId: async (req, res, next) => {
         try {
             const {preferL = 'en'} = req.body;
             const {userId} = req.params;
-            if (userId > userService.dataBaseLength()) {
+            const id = await userService.isUserId(userId);
+            if (!id) {
                 throw new Error(errorMessages.NOT_VALID_ID[preferL]);
             }
 
