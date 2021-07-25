@@ -2,11 +2,11 @@ const db = require('../dataBase').getInstance();
 
 module.exports = {
 
-    getUserByEmail: async (email, password) => {
+    getUserByEmail: async (email) => {
 
     const  UserModel = db.getModel('User');
 
-    const user = await UserModel.findOne({where: {email: `${email}`, password: `${password}`}});
+    const user = await UserModel.findOne({where: {email: `${email}`}});
 
     return user;
 }
