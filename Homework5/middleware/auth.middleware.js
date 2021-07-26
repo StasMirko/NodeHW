@@ -1,17 +1,24 @@
+const Joi = require('joi');
+const userValidationSchema = require('../validators/user/new-user.validator');
+const ErrorHandler = require('../error/ErrorHandler');
+
 const errorCodes = require('../constant/errorCodes.enum');
 const errorMessages = require('../error/error.messages');
 
 module.exports = {
     isUserValid: (req, res, next) => {
         try {
-            const {email, password, preferL = 'en'} = req.body;
-            if (!email || !password) {
-                throw new Error(errorMessages.SOME_FILED_IS_EMPTY[preferL]);
+            const user = req.body;
+
+            const {error} = Joi.validate(user, userValidationSchema);
+
+            if (error) {
+                return next(new ErrorHandler(error.details[0].message, errorCodes.BAD_REQUEST) )
             }
 
-            if (password.length < 5) {
-                throw new Error(errorMessages.TOO_WEAK_PASSWORD[preferL]);
-            }
+            // console.log('**********************************');
+            // console.log(error.details[0].message);
+            // console.log('**********************************');
 
             next();
         } catch (e) {

@@ -3,7 +3,7 @@ const errorCodes = require('../constant/errorCodes.enum');
 const {checkHashPassword} = require('../helpers');
 
 module.exports = {
-    getUserByEmail: async (req, res) => {
+    getUserByEmail: async (req, res, next) => {
         try {
             const {email, password} = req.body;
             const user = await loginService.getUserByEmail(email);
@@ -12,7 +12,7 @@ module.exports = {
 
             res.json(user);
         } catch (e) {
-            res.status(errorCodes.BAD_REQUEST).json(e.message);
+            next(e);
         }
     }
 }
