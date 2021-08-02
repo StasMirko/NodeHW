@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
             },
 
             createAt: {
-                type: DataTypes.DATETIME,
+                type: DataTypes.DATE,
                 defaultValue: sequelize.fn('now')
             }
         },
