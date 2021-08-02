@@ -5,12 +5,11 @@ const {tokinizer} = require('../helpers');
 module.exports = {
 
     loginUser: async (req, res, next) => {
-        const {id} = req.user;
 
         const tokens = tokinizer();
-        await tokenService.createTokenPair(tokens);
+        await tokenService.createTokenPair({...tokens, userId: 1});
 
-        res.json(user);
+        res.json(tokens);
     }
 
 }
