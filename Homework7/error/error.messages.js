@@ -27,5 +27,9 @@ module.exports = {
     NOT_VALID_ID: {
         en: 'Not valid id',
         ua: 'Недійсний ідентифікатор'
+    },
+    NOT_FOUND: {
+        en: 'Not found',
+        ua: 'Не знайдено'
     }
 }

@@ -1,10 +1,11 @@
 const router = require('express').Router();
 
 const tokenController = require('../controller/token.controller');
-const tokenMiddleware = require('../middleware/token.middleware');
+const accessTokenMiddleware = require('../middleware/access-token.middleware');
+const refreshTokenMiddleware = require('../middleware/refresh-token.middleware');
 
 router.post('/', tokenController.loginUser);
-router.post('/logout', tokenMiddleware.checkIsTokenValid, tokenController.logoutUser);
-// router.post('/refresh', tokenMiddleware.checkIsTokenValid, tokenController.logoutUser);
+router.post('/logout', accessTokenMiddleware.checkIsAccessTokenValid, tokenController.logoutUser);
+router.post('/refresh', refreshTokenMiddleware.checkIsRefreshTokenValid, tokenController.refreshToken);
 
 module.exports = router;

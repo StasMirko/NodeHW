@@ -14,10 +14,15 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', apiRouter);
 
 app.use('*', (err,req, res, next) => {
+    let message = err.message
+    if (err.parent){
+        message = err.parent.sqlMessage
+    }
+
     res
         .status(err.status || 400)
         .json({
-            message: err.message,
+            message,
             code: err.customCode
         })
 })
