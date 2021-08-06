@@ -1,4 +1,8 @@
 const express = require('express');
+const morgan = require('morgan');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
@@ -10,6 +14,8 @@ db.setModels();
 app.use(express.json());
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(morgan('dev'));
 
 app.use('/', apiRouter);
 
