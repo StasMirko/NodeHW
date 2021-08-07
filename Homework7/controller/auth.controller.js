@@ -16,7 +16,7 @@ module.exports = {
 
             await authService.createUser(user);
 
-            emailService.sendMail(user.email).catch(() => {});
+            await emailService.sendMail(user.email);
 
             res.json(user);
         } catch (e) {

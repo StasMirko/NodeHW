@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+const {PORT} = require('./config')
+
+
 const app = express();
 
 const apiRouter = require('./router/api.router');
@@ -33,8 +36,8 @@ app.use('*', (err,req, res, next) => {
         })
 })
 
-app.listen(5000, () => {
-    console.log('Listen port 5000');
+app.listen(PORT, () => {
+    console.log(`Listen port ${PORT}`);
 });
 
 process.on("unhandledRejection", reason => {
