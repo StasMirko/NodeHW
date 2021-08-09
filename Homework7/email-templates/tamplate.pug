@@ -1,12 +1,14 @@
 doctype html
 html
     head
-
+        style
+            include style.css
     body
         div
             block content
-                div
+            div.footer
                     | Best regards,
                     br
                     |Node team
-                    a(href='google.com') our website
+                    br
+                    a(href=frontendUrl) OUR WEBSITE

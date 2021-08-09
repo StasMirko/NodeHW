@@ -1,4 +1,4 @@
-const {USER_REGISTER, USER_FORGOT_PASS} = require('../constant/email-action.enam');
+const {USER_REGISTER, USER_FORGOT_PASS} = require('../constant/email-action.enum');
 
 module.exports = {
     [USER_REGISTER]: {
